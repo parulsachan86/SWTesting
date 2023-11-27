@@ -1,9 +1,5 @@
 package com.Debtly10.controller;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import com.Debtly10.DTOS.PaymentRegistrationDTO;
 import com.Debtly10.Services.PaymentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +19,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {paymentController.class})
 @ExtendWith(SpringExtension.class)
@@ -77,15 +75,17 @@ class paymentControllerDiffblueTest {
      */
     @Test
     void testDeletePayment2() throws Exception {
-        doNothing().when(paymentService).deletePayment(Mockito.<Long>any());
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/payment/delete_payment/{pid}", 1L);
+        Long pid = 123L;
+        doNothing().when(paymentService).deletePayment(pid);
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/payment/delete_payment/123", 1L);
         requestBuilder.characterEncoding("Encoding");
         MockMvcBuilders.standaloneSetup(paymentController)
                 .build()
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
-                .andExpect(MockMvcResultMatchers.content().string(" payment deleted : 1"));
+                .andExpect(MockMvcResultMatchers.content().string(" payment deleted : 123"));
+        verify(paymentService).deletePayment(pid);
     }
 
     /**

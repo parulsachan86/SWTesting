@@ -1,7 +1,10 @@
 com/Debtly10/Services/MortgageServiceDiffblueTest.class
 com/Debtly10/controller/mortgageControllerDiffblueTest.class
-com/Debtly10/Services/BMIServiceDiffblueTest.class
-com/Debtly10/Services/CustomerServiceDiffblueTest.class
-com/Debtly10/controller/customerControllerDiffblueTest.class
 com/Debtly10/Services/PaymentServiceDiffblueTest.class
 com/Debtly10/controller/paymentControllerDiffblueTest.class
+com/Debtly10/Services/BMIServiceDiffblueTest.class
+com/Debtly10/Services/CustomerServiceDiffblueTest.class
+com/Debtly10/models/CustomerDiffblueTest.class
+com/Debtly10/controller/customerControllerDiffblueTest.class
+com/Debtly10/models/PaymentDiffblueTest.class
+com/Debtly10/models/MortgageDiffblueTest.class

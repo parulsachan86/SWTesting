@@ -24,7 +24,7 @@ public class customerController {
     @PostMapping("/register_customer")
     public String addCustomer(@RequestBody CustomerRegistrationDTO customerRegistrationDTO){
         logger.info("[Adding new customer]");
-        return customerService.addCustomer(customerRegistrationDTO);
+        return customerService.addCustomer(customerRegistrationDTO).toString();
     }
 
 

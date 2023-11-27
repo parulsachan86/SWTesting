@@ -38,7 +38,14 @@ class customerControllerDiffblueTest {
      */
     @Test
     void testAddCustomer() throws Exception {
-        when(customerService.addCustomer(Mockito.<CustomerRegistrationDTO>any())).thenReturn("Add Customer");
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setLastName("Doe");
+        customer.setFirstName("Jane");
+        customer.setEmail("jane.doe@example.org");
+
+        when(customerService.addCustomer(Mockito.<CustomerRegistrationDTO>any())).thenReturn(customer);
         MockHttpServletRequestBuilder contentTypeResult = MockMvcRequestBuilders.post("/customer/register_customer")
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -50,7 +57,7 @@ class customerControllerDiffblueTest {
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
-                .andExpect(MockMvcResultMatchers.content().string("Add Customer"));
+                .andExpect(MockMvcResultMatchers.content().string(customer.toString()));
     }
 
     /**

@@ -46,10 +46,15 @@ class CustomerServiceDiffblueTest {
         customer.setLastName("Doe");
         customer.setMortgageList(new ArrayList<>());
         when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
-        String actualAddCustomerResult = customerService
+        Customer actualAddCustomerResult = customerService
                 .addCustomer(new CustomerRegistrationDTO("jane.doe@example.org", "Jane", "Doe", "42 Main St", "Contact"));
         verify(customerRepository).save(Mockito.<Customer>any());
-        assertEquals("Customer registered Successfully", actualAddCustomerResult);
+        assertEquals("Jane", actualAddCustomerResult.getFirstName());
+        assertEquals("Doe", actualAddCustomerResult.getLastName());
+        assertEquals("jane.doe@example.org", actualAddCustomerResult.getEmail());
+        assertEquals("42 Main St", actualAddCustomerResult.getAddress());
+        assertEquals("Contact", actualAddCustomerResult.getContact());
+
     }
 
     /**
@@ -112,15 +117,7 @@ class CustomerServiceDiffblueTest {
         customer.setMortgageList(new ArrayList<>());
         Optional<Customer> ofResult = Optional.of(customer);
 
-        Customer customer2 = new Customer();
-        customer2.setAddress("42 Main St");
-        customer2.setContact("Contact");
-        customer2.setEmail("jane.doe@example.org");
-        customer2.setFirstName("Jane");
-        customer2.setId(1L);
-        customer2.setLastName("Doe");
-        customer2.setMortgageList(new ArrayList<>());
-        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer2);
+        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         String actualUpdateCustomerResult = customerService
                 .updateCustomer(new CustomerUpdateDto("Jane", "Doe", "jane.doe@example.org", "Contact", "42 Main St"), 1L);
@@ -145,15 +142,7 @@ class CustomerServiceDiffblueTest {
         customer.setMortgageList(new ArrayList<>());
         Optional<Customer> ofResult = Optional.of(customer);
 
-        Customer customer2 = new Customer();
-        customer2.setAddress("42 Main St");
-        customer2.setContact("Contact");
-        customer2.setEmail("jane.doe@example.org");
-        customer2.setFirstName("Jane");
-        customer2.setId(1L);
-        customer2.setLastName("Doe");
-        customer2.setMortgageList(new ArrayList<>());
-        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer2);
+        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         String actualUpdateCustomerResult = customerService
                 .updateCustomer(new CustomerUpdateDto("", "Doe", "jane.doe@example.org", "Contact", "42 Main St"), 1L);
@@ -178,15 +167,7 @@ class CustomerServiceDiffblueTest {
         customer.setMortgageList(new ArrayList<>());
         Optional<Customer> ofResult = Optional.of(customer);
 
-        Customer customer2 = new Customer();
-        customer2.setAddress("42 Main St");
-        customer2.setContact("Contact");
-        customer2.setEmail("jane.doe@example.org");
-        customer2.setFirstName("Jane");
-        customer2.setId(1L);
-        customer2.setLastName("Doe");
-        customer2.setMortgageList(new ArrayList<>());
-        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer2);
+        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         String actualUpdateCustomerResult = customerService
                 .updateCustomer(new CustomerUpdateDto("Jane", "", "jane.doe@example.org", "Contact", "42 Main St"), 1L);
@@ -269,19 +250,24 @@ class CustomerServiceDiffblueTest {
     void testUpdateCustomer6() {
         Customer customer = new Customer();
         customer.setAddress("42 Main St");
-        customer.setContact("Contact");
-        customer.setEmail("jane.doe@example.org");
-        customer.setFirstName("Jane");
+        customer.setContact("TestContact");
+        customer.setEmail("email@example.org");
+        customer.setFirstName("FirstName");
         customer.setId(1L);
-        customer.setLastName("Doe");
+        customer.setLastName("LastName");
         customer.setMortgageList(new ArrayList<>());
         Optional<Customer> ofResult = Optional.of(customer);
         when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         String actualUpdateCustomerResult = customerService
-                .updateCustomer(new CustomerUpdateDto("Jane", "Doe", "jane.doe@example.org", "Contact", ""), 1L);
+                .updateCustomer(new CustomerUpdateDto("Jane", "Doe", "jane.doe@example.org", "Contact", "address"), 1L);
         verify(customerRepository).findById(Mockito.<Long>any());
         verify(customerRepository).save(Mockito.<Customer>any());
+        assertEquals("Jane", customer.getFirstName());
+        assertEquals("Doe", customer.getLastName());
+        assertEquals("jane.doe@example.org", customer.getEmail());
+        assertEquals("address", customer.getAddress());
+        assertEquals("Contact", customer.getContact());
         assertEquals("Customer updated Successfully", actualUpdateCustomerResult);
     }
 

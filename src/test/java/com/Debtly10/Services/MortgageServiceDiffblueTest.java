@@ -1,7 +1,9 @@
 package com.Debtly10.Services;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -86,6 +88,146 @@ class MortgageServiceDiffblueTest {
     }
 
     /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage2() {
+        when(mortgageRepository.save(Mockito.<Mortgage>any()))
+                .thenThrow(new IllegalStateException("mortgage added successfully"));
+
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class,
+                () -> mortgageService.addMortgage(
+                        new MortgageRegistrationDTO("Product Name", 10.0f, 10.0f, 10.0f, mock(Date.class), mock(Date.class), 10.0f),
+                        1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+        verify(mortgageRepository).save(Mockito.<Mortgage>any());
+    }
+
+    /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage3() {
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class, () -> mortgageService.addMortgage(
+                new MortgageRegistrationDTO(null, 10.0f, 10.0f, 10.0f, mock(Date.class), mock(Date.class), 10.0f), 1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage4() {
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class,
+                () -> mortgageService.addMortgage(
+                        new MortgageRegistrationDTO("Product Name", -1.0f, 10.0f, 10.0f, mock(Date.class), mock(Date.class), 10.0f),
+                        1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage5() {
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class,
+                () -> mortgageService.addMortgage(
+                        new MortgageRegistrationDTO("Product Name", 10.0f, -1.0f, 10.0f, mock(Date.class), mock(Date.class), 10.0f),
+                        1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage6() {
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class,
+                () -> mortgageService.addMortgage(
+                        new MortgageRegistrationDTO("Product Name", 10.0f, 10.0f, -1.0f, mock(Date.class), mock(Date.class), 10.0f),
+                        1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
+     * Method under test:
+     * {@link MortgageService#addMortgage(MortgageRegistrationDTO, Long)}
+     */
+    @Test
+    void testAddMortgage7() {
+        Customer customer = new Customer();
+        customer.setAddress("42 Main St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        assertThrows(IllegalStateException.class,
+                () -> mortgageService.addMortgage(
+                        new MortgageRegistrationDTO("Product Name", 10.0f, 10.0f, 10.0f, mock(Date.class), mock(Date.class), -1.0f),
+                        1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
      * Method under test: {@link MortgageService#getMortgageByCustomer(Long)}
      */
     @Test
@@ -108,6 +250,16 @@ class MortgageServiceDiffblueTest {
     }
 
     /**
+     * Method under test: {@link MortgageService#getMortgageByCustomer(Long)}
+     */
+    @Test
+    void testGetMortgageByCustomer2() {
+        when(customerRepository.findById(Mockito.<Long>any())).thenThrow(new IllegalStateException("foo"));
+        assertThrows(IllegalStateException.class, () -> mortgageService.getMortgageByCustomer(1L));
+        verify(customerRepository).findById(Mockito.<Long>any());
+    }
+
+    /**
      * Method under test: {@link MortgageService#deleteMortgage(Long)}
      */
     @Test
@@ -116,6 +268,17 @@ class MortgageServiceDiffblueTest {
         String actualDeleteMortgageResult = mortgageService.deleteMortgage(1L);
         verify(mortgageRepository).deleteById(Mockito.<Long>any());
         assertEquals("mortgage deleted successfully", actualDeleteMortgageResult);
+    }
+
+    /**
+     * Method under test: {@link MortgageService#deleteMortgage(Long)}
+     */
+    @Test
+    void testDeleteMortgage2() {
+        doThrow(new IllegalStateException("mortgage deleted successfully")).when(mortgageRepository)
+                .deleteById(Mockito.<Long>any());
+        assertThrows(IllegalStateException.class, () -> mortgageService.deleteMortgage(1L));
+        verify(mortgageRepository).deleteById(Mockito.<Long>any());
     }
 
     /**
@@ -333,6 +496,16 @@ class MortgageServiceDiffblueTest {
         assertEquals(1, actualAllMortgage.size());
     }
 
+    /**
+     * Method under test: {@link MortgageService#getAllMortgage()}
+     */
+    @Test
+    void testGetAllMortgage3() {
+        when(mortgageRepository.findAll()).thenThrow(new IllegalStateException("foo"));
+        assertThrows(IllegalStateException.class, () -> mortgageService.getAllMortgage());
+        verify(mortgageRepository).findAll();
+    }
+
     @Test
     public void testAddMortgageException() {
         Customer customer2 = new Customer();
@@ -346,9 +519,8 @@ class MortgageServiceDiffblueTest {
         Optional<Customer> ofResult = Optional.of(customer2);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         try {
-            String actualAddMortgageResult = mortgageService.addMortgage(
-                    new MortgageRegistrationDTO(null, -1, -1, -1, null, null, -1),
-                    1L);
+            String actualAddMortgageResult = mortgageService
+                    .addMortgage(new MortgageRegistrationDTO(null, -1, -1, -1, null, null, -1), 1L);
             fail("IllegalStateException expected");
         } catch (IllegalStateException e) {
             assertEquals("value not set", e.getMessage());

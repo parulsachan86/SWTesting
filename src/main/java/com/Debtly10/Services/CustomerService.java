@@ -17,30 +17,15 @@ public class CustomerService
         this.customerRepository = customerRepository;
     }
 
-    public String addCustomer(CustomerRegistrationDTO customerRegistrationDTO) {
+    public Customer addCustomer(CustomerRegistrationDTO customerRegistrationDTO) {
         Customer customer = new Customer();
         customer.setFirstName(customerRegistrationDTO.getFirstname());
         customer.setLastName(customerRegistrationDTO.getLastname());
         customer.setEmail(customerRegistrationDTO.getEmail());
         customer.setAddress(customerRegistrationDTO.getAddress());
         customer.setContact(customerRegistrationDTO.getContact());
-        if(customer.getEmail().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getFirstName().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getLastName().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getAddress().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getContact().equals(null))
-            throw new IllegalStateException("value not set");
-
         customerRepository.save(customer);
-        return "Customer registered Successfully";
+        return customer;
 
     }
 
