@@ -35,10 +35,7 @@ public class PaymentService {
         payment.setDate(paymentRegistrationDTO.getDate());
         Mortgage mortgage = mortgageRepository.findById(mid).get();
 
-        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
-        Date now = new Date();
-        String strDate = sdfDate.format(now);
-        long diff = diff(paymentRegistrationDTO.getDate().getTime(),mortgage.getLastPaid().getTime());
+        long diff = paymentRegistrationDTO.getDate().getTime() - mortgage.getLastPaid().getTime();
         long diffDays = diff / (24 * 60 * 60 * 1000);
         float rate = mortgage.getInterestRate();
         float interest = (mortgage.getLeftAmount() * diffDays *rate)/100;
@@ -49,11 +46,7 @@ public class PaymentService {
         mortgageRepository.save(mortgage);
         payment.setMortgage(mortgage);
         paymentRepository.save(payment);
-        return " payment added successfully" + diffDays;
-    }
-
-    public long diff(long ptoDate, long regDate) {
-        return ptoDate - regDate;
+        return " payment added successfully " + diffDays;
     }
 
     public List<PaymentFetchDTO> getAllPayment() {
@@ -102,9 +95,6 @@ public class PaymentService {
 
     public float seeDue(PaymentRegistrationDTO paymentRegistrationDTO ,Long mid) {
         Mortgage mortgage = mortgageRepository.findById(mid).get();
-        Payment payment = new Payment();
-        payment.setAmount(paymentRegistrationDTO.getAmount());
-        payment.setDate(paymentRegistrationDTO.getDate());
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
         Date now = new Date();
         String strDate = sdfDate.format(now);
@@ -114,19 +104,6 @@ public class PaymentService {
         float interest = (mortgage.getLeftAmount() * diffDays *rate)/100;
         float temp= mortgage.getLeftAmount();
         float newAmount = temp + interest;
-        return newAmount ;
+        return newAmount;
     }
-
-
-//    Mortgage mortgage= new Mortgage();
-//        mortgage.setGivenAmount(mortgageRegistrationDTO.getGivenAmount());
-//        mortgage.setLastPaid(mortgageRegistrationDTO.getLastPaid());
-//        mortgage.setIssueDate(mortgageRegistrationDTO.getIssueDate());
-//        mortgage.setLeftAmount(mortgageRegistrationDTO.getLeftAmount());
-//        mortgage.setProductName(mortgageRegistrationDTO.getProductName());
-//        mortgage.setMarketValue(mortgageRegistrationDTO.getMarketValue());
-//    Customer customer = customerRepository.findById(id).get();
-//        mortgage.setCustomer(customer);
-//        mortgageRepository.save(mortgage);
-//        return "mortgage added successfully";
 }

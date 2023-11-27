@@ -1,7 +1,6 @@
 package com.Debtly10.Services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.Debtly10.DTOS.MortgageFetchDTO;
@@ -59,11 +58,14 @@ class PaymentServiceDiffblueTest {
         mortgage.setId(1L);
         mortgage.setInterestRate(10.0f);
         mortgage.setIssueDate(mock(Date.class));
-        mortgage.setLastPaid(mock(Date.class));
         mortgage.setLeftAmount(10.0f);
         mortgage.setMarketValue(10.0f);
         mortgage.setPaymentList(new ArrayList<>());
+        Date lastPaid = spy(new Date(1L));
+        when(lastPaid.getTime()).thenReturn(86400000L);
+        mortgage.setLastPaid(lastPaid);
         mortgage.setProductName("Product Name");
+        Optional<Mortgage> ofResult = Optional.of(mortgage);
 
         Payment payment = new Payment();
         payment.setAmount(10.0f);
@@ -72,61 +74,18 @@ class PaymentServiceDiffblueTest {
         payment.setMortgage(mortgage);
         when(paymentRepository.save(Mockito.<Payment>any())).thenReturn(payment);
 
-        Customer customer2 = new Customer();
-        customer2.setAddress("42 Main St");
-        customer2.setContact("Contact");
-        customer2.setEmail("jane.doe@example.org");
-        customer2.setFirstName("Jane");
-        customer2.setId(1L);
-        customer2.setLastName("Doe");
-        customer2.setMortgageList(new ArrayList<>());
-        Date lastPaid = spy(new Date(2023,4,9));
-        when(lastPaid.getTime()).thenReturn(10L);
-
-        Mortgage mortgage2 = new Mortgage();
-        mortgage2.setCustomer(customer2);
-        mortgage2.setGivenAmount(10.0f);
-        mortgage2.setId(1L);
-        mortgage2.setInterestRate(10.0f);
-        mortgage2.setIssueDate(mock(Date.class));
-        mortgage2.setLastPaid(lastPaid);
-        mortgage2.setLeftAmount(10.0f);
-        mortgage2.setMarketValue(10.0f);
-        mortgage2.setPaymentList(new ArrayList<>());
-        mortgage2.setProductName("Product Name");
-        Optional<Mortgage> ofResult = Optional.of(mortgage2);
-
-        Customer customer3 = new Customer();
-        customer3.setAddress("42 Main St");
-        customer3.setContact("Contact");
-        customer3.setEmail("jane.doe@example.org");
-        customer3.setFirstName("Jane");
-        customer3.setId(1L);
-        customer3.setLastName("Doe");
-        customer3.setMortgageList(new ArrayList<>());
-
-        Mortgage mortgage3 = new Mortgage();
-        mortgage3.setCustomer(customer3);
-        mortgage3.setGivenAmount(10.0f);
-        mortgage3.setId(1L);
-        mortgage3.setInterestRate(10.0f);
-        mortgage3.setIssueDate(mock(Date.class));
-        mortgage3.setLastPaid(mock(Date.class));
-        mortgage3.setLeftAmount(10.0f);
-        mortgage3.setMarketValue(10.0f);
-        mortgage3.setPaymentList(new ArrayList<>());
-        mortgage3.setProductName("Product Name");
-        when(mortgageRepository.save(Mockito.<Mortgage>any())).thenReturn(mortgage3);
+        when(mortgageRepository.save(Mockito.<Mortgage>any())).thenReturn(mortgage);
         when(mortgageRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
-        Date date = spy(new Date(2023,4,10));
-        when(date.getTime()).thenReturn(12L);
+        Date date = spy(new Date(1L));
+        when(date.getTime()).thenReturn(345600000L);
         String actualAddPaymentResult = paymentService.addPayment(new PaymentRegistrationDTO(10.0f, date), 1L);
-        verify(lastPaid).getTime();
-        verify(date).getTime();
+
         verify(mortgageRepository).findById(Mockito.<Long>any());
         verify(mortgageRepository).save(Mockito.<Mortgage>any());
         verify(paymentRepository).save(Mockito.<Payment>any());
-        assertEquals(" payment added successfully0", actualAddPaymentResult);
+        assertEquals(3,mortgage.getLeftAmount());
+        assertSame(date, mortgage.getLastPaid());
+        assertEquals(" payment added successfully 3", actualAddPaymentResult);
     }
 
     /**
@@ -253,7 +212,7 @@ class PaymentServiceDiffblueTest {
         customer.setLastName("Doe");
         customer.setMortgageList(new ArrayList<>());
         Date lastPaid = mock(Date.class);
-        when(lastPaid.getTime()).thenReturn(10L);
+        when(lastPaid.getTime()).thenReturn(86400000L);
 
         Mortgage mortgage = new Mortgage();
         mortgage.setCustomer(customer);
@@ -269,11 +228,11 @@ class PaymentServiceDiffblueTest {
         Optional<Mortgage> ofResult = Optional.of(mortgage);
         when(mortgageRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         Date date = mock(Date.class);
-        when(date.getTime()).thenReturn(10L);
+        when(date.getTime()).thenReturn(345600000L);
         float actualSeeDueResult = paymentService.seeDue(new PaymentRegistrationDTO(10.0f, date), 1L);
         verify(lastPaid).getTime();
         verify(date).getTime();
         verify(mortgageRepository).findById(Mockito.<Long>any());
-        assertEquals(10.0f, actualSeeDueResult);
+        assertEquals(13.0f, actualSeeDueResult);
     }
 }

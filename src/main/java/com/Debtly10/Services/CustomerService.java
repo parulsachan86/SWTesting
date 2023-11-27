@@ -62,37 +62,23 @@ public class CustomerService
 
     public String updateCustomer(CustomerUpdateDto customerUpdateDto, Long id) {
         Customer customer = customerRepository.findById(id).get();
-        if(!customerUpdateDto.getFirstname().equals(null)){
+        if(customerUpdateDto.getFirstname() != ""){
             customer.setFirstName(customerUpdateDto.getFirstname());
         }
-        if(customerUpdateDto.getLastname().equals((null))){
+        if(customerUpdateDto.getLastname() != ""){
             customer.setLastName(customerUpdateDto.getLastname());
         }
-        if(customerUpdateDto.getAddress().equals(null)){
+        if(customerUpdateDto.getAddress() != ""){
             customer.setAddress(customerUpdateDto.getAddress());
         }
-        if(customerUpdateDto.getEmail().equals(null)){
+        if(customerUpdateDto.getEmail() != ""){
             customer.setEmail(customerUpdateDto.getEmail());
         }
         if(customerUpdateDto.getContact() != ""){
             customer.setContact(customerUpdateDto.getContact());
         }
 
-        if(customer.getEmail().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getFirstName().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getLastName().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getAddress().equals(null))
-            throw new IllegalStateException("value not set");
-
-        if(customer.getContact().equals(null))
-            throw new IllegalStateException("value not set");
-      customerRepository.save(customer);
+        customerRepository.save(customer);
         return "Customer updated Successfully";
     }
 }

@@ -1,8 +1,6 @@
 package com.Debtly10.Services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -278,21 +276,37 @@ class CustomerServiceDiffblueTest {
         customer.setLastName("Doe");
         customer.setMortgageList(new ArrayList<>());
         Optional<Customer> ofResult = Optional.of(customer);
-
-        Customer customer2 = new Customer();
-        customer2.setAddress("42 Main St");
-        customer2.setContact("Contact");
-        customer2.setEmail("jane.doe@example.org");
-        customer2.setFirstName("Jane");
-        customer2.setId(1L);
-        customer2.setLastName("Doe");
-        customer2.setMortgageList(new ArrayList<>());
-        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer2);
+        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
         when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
         String actualUpdateCustomerResult = customerService
                 .updateCustomer(new CustomerUpdateDto("Jane", "Doe", "jane.doe@example.org", "Contact", ""), 1L);
         verify(customerRepository).findById(Mockito.<Long>any());
         verify(customerRepository).save(Mockito.<Customer>any());
+        assertEquals("Customer updated Successfully", actualUpdateCustomerResult);
+    }
+
+    @Test
+    public void testUpdateCustomer_nonEmpty() {
+        Customer customer = new Customer();
+        customer.setAddress("42  St");
+        customer.setContact("Contact");
+        customer.setEmail("jane.doe@example.org");
+        customer.setFirstName("Jane");
+        customer.setId(1L);
+        customer.setLastName("Doe");
+        customer.setMortgageList(new ArrayList<>());
+        Optional<Customer> ofResult = Optional.of(customer);
+        when(customerRepository.save(Mockito.<Customer>any())).thenReturn(customer);
+        when(customerRepository.findById(Mockito.<Long>any())).thenReturn(ofResult);
+        String actualUpdateCustomerResult = customerService
+                .updateCustomer(new CustomerUpdateDto("", "", "", "", ""), 1L);
+        verify(customerRepository).findById(Mockito.<Long>any());
+        verify(customerRepository).save(Mockito.<Customer>any());
+        assertNotEquals("", customer.getFirstName());
+        assertNotEquals("", customer.getLastName());
+        assertNotEquals("", customer.getEmail());
+        assertNotEquals("", customer.getAddress());
+        assertNotEquals("", customer.getContact());
         assertEquals("Customer updated Successfully", actualUpdateCustomerResult);
     }
 }
