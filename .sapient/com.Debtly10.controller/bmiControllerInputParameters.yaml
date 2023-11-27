@@ -1,0 +1,407 @@
+---
+modelFingerprint: "E5DC4E0D7F68D6671DCE6B84421318A8"
+methods:
+- method:
+    name: "calculateBMI"
+    returnType: "org.springframework.http.ResponseEntity"
+    signature: "calculateBMI(com.Debtly10.models.BMI) : org.springframework.http.ResponseEntity<java.lang.Double>"
+    instructionFingerprint: "CD65808E7FA5EE63BAB72E9102433847"
+    parametersTypes:
+    - "com.Debtly10.models.BMI"
+  paths:
+  - pathId: "path1"
+    pathIdForUser: "path1"
+    testPathName: "calculateBMITest"
+    nameDefinedByUser: false
+    constructorSignature: "<init>() : void"
+    priorityDefinedByUser: false
+    filledByUser: false
+    priority: "LOW"
+    modelFingerprint: "C3B5210C1AC0224B3CC7CBF0AE548199"
+    problemWasSolvedByProver: true
+    truncated: false
+    inputParameters:
+    - type: "CONSTRUCTOR"
+      modelFingerprint: "BCD8B0C2EB1FCE714EAB6CEF0D771ACC"
+      index: 1
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "OBJECT"
+        content: !<new>
+          target: "com.Debtly10.controller.bmiController"
+          parameters: []
+          privateConstructor: false
+          createdByTargetCode: false
+          propertiesMap:
+            bmiService:
+              sapientType: "MOCK"
+              suggestedContent: !<unknown_object>
+                target: "com.Debtly10.Services.BMIService"
+                onlyPojoFunctions: false
+                builderPattern: false
+              valueType: "com.Debtly10.Services.BMIService"
+              uuid: "bMIService1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+        suggestedContent: !<new>
+          target: "com.Debtly10.controller.bmiController"
+          parameters: []
+          privateConstructor: false
+          createdByTargetCode: false
+          propertiesMap:
+            bmiService:
+              sapientType: "UNKNOWN"
+              suggestedContent: !<unknown_object>
+                target: "com.Debtly10.Services.BMIService"
+                onlyPojoFunctions: false
+                builderPattern: false
+              valueType: "com.Debtly10.Services.BMIService"
+              uuid: "bMIService1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+        valueType: "com.Debtly10.controller.bmiController"
+        uuid: "target"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "INPUT"
+      name: "bmi"
+      modelFingerprint: "F7FC3CDE1A19E914829F840E95626EC6"
+      index: 2
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "OBJECT"
+        content: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        suggestedContent: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        valueType: "com.Debtly10.models.BMI"
+        uuid: "calculateBMI_bMI1"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "LOCAL_VARIABLE"
+      name: "bmi"
+      modelFingerprint: "85681EA43D9F7CF315B40256E37C7EE6"
+      index: 3
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "OBJECT"
+        content: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        suggestedContent: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        valueType: "com.Debtly10.models.BMI"
+        uuid: "calculateBMI_bMI1"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      methodExercised:
+        target: "bmi"
+        name: "getHeight"
+        parameters: []
+        signature: "getHeight(): Double"
+        returnValue:
+          sapientType: "BASIC"
+          content: !<regular>
+            value: 0.0
+          valueType: "java.lang.Double"
+          uuid: "calculateBMI_double1"
+          fixed: false
+          equalsMethodPresent: false
+          explicitCastNeeded: false
+        access: 1
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "LOCAL_VARIABLE"
+      name: "bmi"
+      modelFingerprint: "152E8CED1C745BD25D52A904456500A5"
+      index: 4
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "OBJECT"
+        content: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              content: !<regular>
+                value: 0.0
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        suggestedContent: !<new>
+          target: "com.Debtly10.models.BMI"
+          parameters:
+          - name: "height"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double1"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          - name: "weight"
+            value:
+              sapientType: "BASIC"
+              valueType: "java.lang.Double"
+              uuid: "calculateBMI_double2"
+              fixed: false
+              equalsMethodPresent: false
+              explicitCastNeeded: false
+          privateConstructor: false
+          createdByTargetCode: false
+        valueType: "com.Debtly10.models.BMI"
+        uuid: "calculateBMI_bMI1"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      methodExercised:
+        target: "bmi"
+        name: "getWeight"
+        parameters: []
+        signature: "getWeight(): Double"
+        returnValue:
+          sapientType: "BASIC"
+          content: !<regular>
+            value: 0.0
+          valueType: "java.lang.Double"
+          uuid: "calculateBMI_double2"
+          fixed: false
+          equalsMethodPresent: false
+          explicitCastNeeded: false
+        access: 1
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "FIELD"
+      name: "bmiService"
+      modelFingerprint: "BFD51D132A35398B733003871AA0D455"
+      index: 5
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "MOCK"
+        suggestedContent: !<unknown_object>
+          target: "com.Debtly10.Services.BMIService"
+          onlyPojoFunctions: false
+          builderPattern: false
+        valueType: "com.Debtly10.Services.BMIService"
+        uuid: "bMIService1"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      methodExercised:
+        target: "this.bmiService"
+        name: "calculateBMI"
+        parameters:
+        - name: "h"
+          value:
+            sapientType: "BASIC"
+            content: !<regular>
+              value: 0.0
+            valueType: "java.lang.Double"
+            uuid: "calculateBMI_double1"
+            fixed: false
+            equalsMethodPresent: false
+            explicitCastNeeded: false
+        - name: "w"
+          value:
+            sapientType: "BASIC"
+            content: !<regular>
+              value: 0.0
+            valueType: "java.lang.Double"
+            uuid: "calculateBMI_double2"
+            fixed: false
+            equalsMethodPresent: false
+            explicitCastNeeded: false
+        signature: "calculateBMI(Double,Double): Double"
+        returnValue:
+          sapientType: "BASIC"
+          content: !<regular>
+            value: 0.0
+          valueType: "java.lang.Double"
+          uuid: "calculateBMI_double3"
+          fixed: false
+          equalsMethodPresent: false
+          explicitCastNeeded: false
+        access: 1
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "STATIC"
+      name: "ResponseEntity"
+      modelFingerprint: "B82C8F14D875FEA494ADE41FFF3034E6"
+      index: 6
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "MOCK"
+        valueType: "org.springframework.http.ResponseEntity"
+        uuid: "org.springframework.http.ResponseEntity"
+        fixed: false
+        equalsMethodPresent: false
+        explicitCastNeeded: false
+      methodExercised:
+        target: "org.springframework.http.ResponseEntity"
+        name: "ok"
+        parameters:
+        - name: "body"
+          value:
+            sapientType: "BASIC"
+            content: !<regular>
+              value: 0.0
+            valueType: "java.lang.Double"
+            uuid: "calculateBMI_double3"
+            fixed: false
+            equalsMethodPresent: false
+            explicitCastNeeded: false
+        signature: "ok(Double): ResponseEntity"
+        returnValue:
+          sapientType: "MOCK"
+          valueType: "org.springframework.http.ResponseEntity"
+          genericValueType: "java.lang.Double"
+          uuid: "calculateBMI_responseEntity1"
+          fixed: false
+          equalsMethodPresent: true
+          explicitCastNeeded: false
+        access: 9
+      staticReadMethodForField: false
+      filledByUser: false
+    - type: "RESULT"
+      name: "result"
+      modelFingerprint: "C30FBB1BDB8738ABE2E08A679D1E3F05"
+      index: 7
+      ignored: false
+      nestedInLoop: false
+      nestedInRecursion: false
+      value:
+        sapientType: "MOCK"
+        valueType: "org.springframework.http.ResponseEntity"
+        genericValueType: "java.lang.Double"
+        uuid: "calculateBMI_responseEntity1"
+        fixed: false
+        equalsMethodPresent: true
+        explicitCastNeeded: false
+      staticReadMethodForField: false
+      filledByUser: false
+    uuid: "00fc7001-042d-3a33-adc7-ed8ba8dd399e"
+    deleted: false
+    disabled: false
+    ignoredBySystem: false
+    prover: "DEFAULT"
+    usedLLM: false
+    disabledStatusUpdatedByUser: false
