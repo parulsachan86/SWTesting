@@ -77,9 +77,6 @@ public class MortgageService {
             mortgage.setMarketValue(mortgageUpdateDto.getMarketValue());
         }
 
-        if(mortgageUpdateDto.getGivenAmount() != 0){
-            mortgage.setGivenAmount(mortgageUpdateDto.getGivenAmount());
-        }
         if(mortgageUpdateDto.getInterestRate() != 0){
             mortgage.setInterestRate(mortgageUpdateDto.getInterestRate());
         }

@@ -1,6 +1,5 @@
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/Repository/CustomerRepository.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/CustomerRegistrationDTO.java
-/home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/Services/BMIService.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/MortgageFetchDTO.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/PaymentRegistrationDTO.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/Repository/MortgageRepository.java
@@ -15,9 +14,7 @@
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/MortgageUpdateDto.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/MortgageRegistrationDTO.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/DTOS/PaymentFetchDTO.java
-/home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/controller/bmiController.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/Services/PaymentService.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/controller/mortgageController.java
-/home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/models/BMI.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/models/Customer.java
 /home/parul/Downloads/SPEmajor-backend/src/main/java/com/Debtly10/models/Mortgage.java
